@@ -26,5 +26,5 @@ def test_mini_project3():
     make_appointment1=driver.find_element(By.TAG_NAME,"h2")
     assert make_appointment1.text=="Make Appointment"
     allure.attach(driver.get_screenshot_as_png(), name='appointment_Screenshot')
-    driver.quit()
+
 
