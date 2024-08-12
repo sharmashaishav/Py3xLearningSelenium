@@ -5,7 +5,8 @@ import time
 import pytest
 import allure
 
-
+@allure.title("Mini Project# 3")
+@allure.description("Verify that if user validity is expired and needs to upgrade")
 def test_mini_project3():
     driver = webdriver.Chrome()
     driver.maximize_window()
