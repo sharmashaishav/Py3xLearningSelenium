@@ -24,7 +24,8 @@ def test_mini_project3():
 
     assert driver.current_url == "https://www.idrive360.com/enterprise/account?upgradenow=true"
     allure.attach(driver.get_screenshot_as_png(),name='Screenshot')
-    upgrade_now = driver.find_element(By.ID, "upgrade")
+    # upgrade_now = driver.find_element(By.ID, "upgrade")
+    upgrade_now = driver.find_element(By.XPATH,"//button[normalize-space(text())='Upgrade Now!']")
     upgrade_now.click()
     time.sleep(10)
     upgrade_noww = driver.find_element(By.CLASS_NAME,"id-card-title")
