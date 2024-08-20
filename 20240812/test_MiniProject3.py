@@ -5,6 +5,10 @@ import time
 import pytest
 import allure
 import allure_pytest
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import xdist
+
 
 @allure.title("Mini Project# 3")
 @allure.description("Verify that if user validity is expired and needs to upgrade")
@@ -20,14 +24,14 @@ def test_mini_project3():
 
     sign_in = driver.find_element(By.ID,"frm-btn")
     sign_in.click()
-    time.sleep(20)
-
+    (WebDriverWait(driver=driver, timeout=20).until
+     (EC.visibility_of_element_located((By.XPATH,"//button[@style='display: block']"))))
     assert driver.current_url == "https://www.idrive360.com/enterprise/account?upgradenow=true"
     allure.attach(driver.get_screenshot_as_png(),name='Screenshot')
     # upgrade_now = driver.find_element(By.ID, "upgrade")
     upgrade_now = driver.find_element(By.XPATH,"//button[normalize-space(text())='Upgrade Now!']")
     upgrade_now.click()
-    time.sleep(10)
+    WebDriverWait(driver=driver,timeout=10).until(EC.visibility_of_element_located((By.CLASS_NAME,"id-card-title")))
     upgrade_noww = driver.find_element(By.CLASS_NAME,"id-card-title")
     assert upgrade_noww.is_displayed()
     allure.attach(driver.get_screenshot_as_png(), name='upgrade_Screenshot')
